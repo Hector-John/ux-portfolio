@@ -11,27 +11,27 @@ import { AuroraText } from "@/components/magicui/aurora-text";
 
 const HeroSection = () => {
   return (
-    <div className="relative w-full flex items-center justify-center bg-white overflow-hidden h-screen">
+    <div className="relative w-full flex items-center justify-center bg-white overflow-hidden h-screen md:h-screen [@media(max-width:768px)]:h-[80vh] [@media(max-width:768px)]:mt-16">
       {/* Framing lines */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="hidden sm:block absolute left-32 top-0 bottom-0 w-px bg-gray-200/80" />
         <div className="hidden sm:block absolute right-32 top-0 bottom-0 w-px bg-gray-200/80" />
-        <div className="absolute top-10 left-0 right-0 h-px bg-gray-200/80" />
+        <div className="absolute hidden sm:top=10 left-0 right-0 h-px bg-gray-200/80" />
         <div className="absolute bottom-8 left-0 right-0 h-px bg-gray-200/30" />
 
         <div className=" absolute left-1/2 -translate-x-40 top-0 bottom-0 w-px bg-gray-200/40" />
         <div className=" absolute left-1/2 translate-x-40 top-0 bottom-0 w-px bg-gray-200/40" />
       </div>
 
-      <div className="container mx-auto px-4 flex flex-col items-center justify-center relative z-10  ">
-        {/* Profile Image at top */}
+      <div className="container mx-auto px-4 flex flex-col items-center justify-center relative z-10">
+        {/* Profile Image at top - added mobile margin */}
         <motion.div
           initial={{ scale: 0.96, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.4, type: "spring" }}
-          className="mb-8 group"
+          className="mb-8 group md:mt-20 mt-8"
         >
-          <div className="relative lg:mt-20 lg:w-36 lg:h-36 h-32 w-32 sm:w-32 sm:h-32 rounded-full border-5 border-white shadow-xl overflow-hidden bg-gradient-to-tr from-cyan-400 to-purple-500 p-0.5">
+          <div className="relative lg:w-36 lg:h-36 h-28 w-28 sm:w-32 sm:h-32 rounded-full border-5 border-white shadow-xl overflow-hidden bg-gradient-to-tr from-cyan-400 to-purple-500 p-0.5">
             <img
               src="/hero-image.png"
               alt="Hector John"
@@ -52,7 +52,7 @@ const HeroSection = () => {
 
         {/* Detailed description */}
         <motion.p
-          className="text-md lg:text-lg text-gray-500 text-center max-w-2xl mb-10 leading-relaxed"
+          className="text-md lg:text-lg text-gray-500 text-center max-w-2xl mb-10 leading-relaxed px-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
