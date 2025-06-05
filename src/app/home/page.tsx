@@ -13,7 +13,7 @@ const HomePage = () => {
       <Partners />
       <SelectedProjects />
       <ImageSlider/>
-      <Testimonials />
+      {/* <Testimonials /> */}
     </div>
   );
 };

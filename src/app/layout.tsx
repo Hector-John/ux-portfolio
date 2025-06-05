@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import { Poppins, Poetsen_One } from "next/font/google";
+import { Montserrat, Poetsen_One } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-// Poppins (main font)
-const poppins = Poppins({
+// Montserrat 
+const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-sans",
 });
 
-// Poetsen One ()
+// Poetsen One 
 const poetsenOne = Poetsen_One({
   subsets: ["latin"],
   weight: "400",
@@ -33,7 +33,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${poppins.variable} ${poetsenOne.variable}`}
+      className={`${montserrat.variable} ${poetsenOne.variable}`}
     >
       <body className="font-sans">
         <Navbar />

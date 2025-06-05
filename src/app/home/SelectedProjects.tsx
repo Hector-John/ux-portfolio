@@ -2,139 +2,113 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { MdOutlineDesignServices } from "react-icons/md";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 interface Project {
   title: string;
   description: string;
-  tags: string[];
   image: string;
-  liveUrl: string;
-  codeUrl: string;
+  caseStudyUrl: string;
 }
 
 const projects: Project[] = [
   {
-    title: "E-commerce Redesign",
-    description: "Revamped user experience for a fashion retailer resulting in 35% increased conversions",
-    tags: ["UX Research", "UI Design", "Prototyping"],
+    title: "Acadix Education Platform",
+    description: "Comprehensive UI/UX redesign for an online learning management system focusing on accessibility and engagement",
     image: "/slider1.png",
-    liveUrl: "#",
-    codeUrl: "#",
+    caseStudyUrl: "/projects/acadix",
   },
   {
-    title: "Step254",
-    description: "Mobile marketplace app specializing in curated second-hand footwear collections",
-    tags: ["Mobile Design", "User Testing", "E-commerce"],
+    title: "Step254 Sneaker Marketplace",
+    description: "Mobile-first e-commerce experience specializing in curated sneaker collections with seamless discovery",
     image: "/slider1.png",
-    liveUrl: "#",
-    codeUrl: "#",
-  },
-  {
-    title: "School Management Dashboard",
-    description: "Streamlined administrative interface for educators with real-time student analytics",
-    tags: ["Responsive Design", "Data Visualization", "B2B"],
-    image: "/slider1.png",
-    liveUrl: "#",
-    codeUrl: "#",
+    caseStudyUrl: "/projects/step254",
   },
 ];
 
 const SelectedProjects = () => {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section id="projects" className="py-24 bg-white">
       <div className="container mx-auto px-4">
-        {/* Header section remains unchanged */}
-        <h1 className="text-center text-4xl">My Selected Work</h1>
-        <p className="text-center text-muted-foreground">Some p text</p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project: Project, index: number) => (
-            <motion.div
+        <div className="grid grid-cols-1 gap-8 max-w-4xl mx-auto">
+          {projects.map((project, index) => (
+            <div 
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              viewport={{ once: true }}
-              className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col h-full"
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
+              className="relative rounded-2xl overflow-hidden h-[500px] cursor-pointer"
+              onMouseEnter={() => setHoveredProject(index)}
+              onMouseLeave={() => setHoveredProject(null)}
             >
-              {/* Image Container - Now fully visible by default */}
-              <div className="relative h-72 overflow-hidden">
-                <div
+              {/* Background Image */}
+              <div className="absolute inset-0">
+                <div 
                   className="absolute inset-0 bg-cover bg-center"
                   style={{ backgroundImage: `url(${project.image})` }}
                 />
-                
-                {/* Gradient Overlay - Appears on hover from bottom to top */}
-                <motion.div 
-                  className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ 
-                    height: hoveredIndex === index ? "100%" : "0%",
-                    opacity: hoveredIndex === index ? 1 : 0
-                  }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
-                />
-                
-                {/* Title and Tags - Slide up on hover */}
-                <motion.div
-                  className="absolute bottom-0 left-0 p-6 w-full"
-                  initial={{ y: 100, opacity: 0 }}
-                  animate={{ 
-                    y: hoveredIndex === index ? 0 : 100,
-                    opacity: hoveredIndex === index ? 1 : 0
-                  }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
-                >
-                  <h3 className="text-xl font-bold text-white mb-2">
-                    {project.title}
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag: string, i: number) => (
-                      <motion.span
-                        key={i}
-                        className="px-2 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs text-white"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: hoveredIndex === index ? 1 : 0 }}
-                        transition={{ delay: i * 0.05 }}
-                      >
-                        {tag}
-                      </motion.span>
-                    ))}
-                  </div>
-                </motion.div>
               </div>
 
-              {/* Content Section */}
-              <div className="p-6 flex-grow flex flex-col">
-                <p className="text-gray-600 mb-6 flex-grow">
-                  {project.description}
-                </p>
-                
-                <Link href={project.codeUrl} className="block">
-                  <Button className="w-full px-4 py-3 bg-cyan-400 hover:bg-cyan-300 transition-colors duration-200 text-white font-medium flex items-center justify-center cursor-pointer">
-                    <MdOutlineDesignServices className="mr-2" />
-                    View Case Study
-                  </Button>
-                </Link>
+              {/* Gradient Overlay - Full width but only covers bottom 50% */}
+              <motion.div
+                initial={{ height: "0%" }}
+                animate={{
+                  height: hoveredProject === index ? "50%" : "0%",
+                }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                style={{
+                  background: "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 50%, transparent 100%)"
+                }}
+              />
+              <div className="absolute bottom-0 left-0 right-0">
+
+              {/* Content Container - Slides up from same side as gradient */}
+              <motion.div
+                initial={{ opacity: 0, y: 100 }}
+                animate={{
+                  opacity: hoveredProject === index ? 1 : 0,
+                  y: hoveredProject === index ? 0 : 100
+                }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                <div className="w-full">
+                  <motion.div
+                    initial={{ x: -20 }}
+                    animate={{ x: hoveredProject === index ? 0 : -20 }}
+                    transition={{ delay: 0.2 }}
+                  >
+                    <h3 className="text-2xl font-medium mb-3">
+                      {project.title}
+                    </h3>
+                  </motion.div>
+                  <motion.div
+                    initial={{ x: -20 }}
+                    animate={{ x: hoveredProject === index ? 0 : -20 }}
+                    transition={{ delay: 0.25 }}
+                  >
+                    <p className="text-gray-200 mb-6">
+                      {project.description}
+                    </p>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: hoveredProject === index ? 1 : 0 }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    <Link href={project.caseStudyUrl}>
+                      <Button className="px-6 py-4 bg-white text-black hover:bg-gray-100 cursor-pointer">
+                        View Case Study
+                      </Button>
+                    </Link>
+                  </motion.div>
+                </div>
+                </div>
+              </motion.div>
+
               </div>
-            </motion.div>
+            </div>
           ))}
-        </div>
-
-        {/* View All Button - No animations as requested */}
-        <div className="text-center mt-16">
-          <Link href="/projects">
-            <Button className=" px-8 py-6 bg-gray-900 text-white font-medium cursor-pointer ">
-              View All Projects
-            </Button>
-          </Link>
         </div>
       </div>
     </section>
