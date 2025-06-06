@@ -1,86 +1,88 @@
 "use client";
-import React from "react";
-import { StickyScroll } from "@/components/ui/stickyScroll";
+
+import { motion } from "framer-motion";
 
 const approachContent = [
   {
-    title: "1. Discover & Define",
+    title: "Discover",
     description:
-      "First, I'll sit down with you to really understand your business goals and users. Through research and conversations, we'll pinpoint exactly what problems we need to solve together.",
-    content: (
-      <div className="p-6 text-white">
-        <h3 className="mb-3 text-lg font-semibold">What we'll do:</h3>
-        <ul className="space-y-2">
-          <li>• Discovery session</li>
-          <li>• User insights</li>
-          <li>• Market analysis</li>
-          <li>• Problem framing</li>
-          <li>• Success metrics</li>
-        </ul>
-      </div>
-    ),
+      "I begin by understanding user needs through research, interviews, and market analysis to identify pain points and opportunities.",
+    color: "bg-yellow-300",
   },
   {
-    title: "2. Ideate & Prototype",
+    title: "Define",
     description:
-      "Now the fun begins! I'll sketch out multiple solutions and create quick prototypes. This is where we test ideas fast and fail early to find the best approach for your users.",
-    content: (
-      <div className="p-6 text-white">
-        <h3 className="mb-3 text-lg font-semibold">What we'll create:</h3>
-        <ul className="space-y-2">
-          <li>• User flows</li>
-          <li>• Interactive prototypes</li>
-          <li>• Usability tests</li>
-          <li>• Quick cycles</li>
-          <li>• Feedback loops</li>
-        </ul>
-      </div>
-    ),
+      "Translating insights into clear problem statements and user personas that guide the design process and keep solutions user-centered.",
+    color: "bg-orange-300",
   },
   {
-    title: "3. Design & Refine",
+    title: "Design",
     description:
-      "With the right direction, I'll craft beautiful, functional interfaces. Every pixel will be intentional, from typography to micro-interactions, ensuring your product feels amazing to use.",
-    content: (
-      <div className="p-6 text-white">
-        <h3 className="mb-3 text-lg font-semibold">Design elements:</h3>
-        <ul className="space-y-2">
-          <li>• Final designs</li>
-          <li>• Design system</li>
-          <li>• Accessibility review</li>
-          <li>• UI animation</li>
-          <li>• Visual polish</li>
-        </ul>
-      </div>
-    ),
+      "Creating wireframes, prototypes, and visual designs that balance aesthetics with functionality through iterative testing.",
+    color: "bg-blue-300",
   },
   {
-    title: "4. Deliver & Support",
+    title: "Deliver",
     description:
-      "I don't just throw designs over the fence. I'll work closely with your developers to ensure perfect implementation and stay involved to refine based on real user feedback.",
-    content: (
-      <div className="p-6 text-white">
-        <h3 className="mb-3 text-lg font-semibold">Final deliverables:</h3>
-        <ul className="space-y-2">
-          <li>• Dev handoff</li>
-          <li>• Design specs</li>
-          <li>• Visual QA</li>
-          <li>• Ongoing support</li>
-          <li>• Feedback review</li>
-        </ul>
-      </div>
-    ),
+      "Collaborating with developers to ensure faithful implementation while maintaining design integrity and user experience.",
+    color: "bg-purple-300",
   },
 ];
 
 const Approach = () => {
   return (
-    <div className="py-12">
+    <div className="py-16 min-h-screen">
       <div className="container mx-auto px-4">
-        <h1 className="font-heading text-3xl md:text-5xl sm:text-4xl mb-6 font-bold text-gray-800 text-center">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="font-serif text-2xl md:text-4xl sm:text-3xl my-10 font-semibold text-gray-800 text-center"
+        >
           My Approach
-        </h1>
-        <StickyScroll content={approachContent} />
+        </motion.h1>
+
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+          {approachContent.map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -5 }}
+              className={`${item.color} min-h-[30vh] rounded-xl p-6 shadow-md flex flex-col justify-between`}
+            >
+              <div>
+                <motion.h1 className="font-serif text-lg md:text-2xl sm:text-xl font-medium text-gray-800 mb-4">
+                  {item.title}
+                </motion.h1>
+                <motion.p className="text-gray-600 leading-7 pt-2">
+                  {item.description}
+                </motion.p>
+              </div>
+              <motion.div
+                className="mt-4 text-right text-gray-700 font-medium"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+              >
+                {index + 1}/{approachContent.length}
+              </motion.div>
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.div
+          className="mt-8 text-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8 }}
+        >
+          <p className="text-gray-600 text-sm font-medium ">
+            *This iterative process ensures solutions are both beautiful and
+            functional, meeting real user needs while achieving business goals.
+          </p>
+        </motion.div>
       </div>
     </div>
   );
