@@ -32,7 +32,7 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Desktop Navbar (unchanged) */}
+      {/* Desktop Navbar */}
       <nav className="hidden md:flex fixed top-4 left-0 right-0 z-50 justify-center">
         <div className="flex items-center justify-center rounded-full bg-white/80 px-4 py-2 shadow-sm backdrop-blur-md dark:bg-slate-900/80">
           <div className="flex items-center gap-1">

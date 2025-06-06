@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Montserrat, Poetsen_One } from "next/font/google";
+import { Montserrat, Poetsen_One, Merriweather } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -18,6 +18,13 @@ const poetsenOne = Poetsen_One({
   variable: "--font-heading",
 });
 
+// Merriweather 
+const merriweather = Merriweather({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-serif",
+});
+
 export const metadata: Metadata = {
   title: "Hakheem | UX Portfolio",
   description:
@@ -33,7 +40,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${montserrat.variable} ${poetsenOne.variable}`}
+      className={`${montserrat.variable} ${poetsenOne.variable} ${merriweather.variable}`}
     >
       <body className="font-sans">
         <Navbar />

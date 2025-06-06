@@ -53,7 +53,7 @@ useEffect(() => {
   }, [nextSlide]);
 
   return (
-    <div className="relative w-full h-[70vh] overflow-hidden">
+    <div className="relative w-full h-[80vh] overflow-hidden">
       {/* Current Image */}
       <div
         className={`absolute inset-0 transition-opacity duration-250 ease-linear ${

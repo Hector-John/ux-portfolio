@@ -29,21 +29,21 @@ const Footer = () => {
     {
       name: "LinkedIn",
       icon: <Linkedin className="w-6 h-6" />,
-      href: "https://linkedin.com/in/yourprofile",
+      href: "https://www.linkedin.com/in/john-hector/",
       color: "hover:text-blue-600",
     },
   ];
 
   return (
-    <footer className="border-t border-gray-200 dark:border-gray-800 py-16 bg-gray-50 dark:bg-gray-900/30">
+    <footer className="border-t border-gray-200 dark:border-gray-800 pt-20 bg-gray-50 dark:bg-gray-900/30">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center text-center">
           {/* Connect Text */}
-          <h2 className="text-3xl font-semibold mb-3 text-gray-900 dark:text-white">
-            Let's work together
+          <h2 className="text-3xl font-serif font-semibold mb-3 text-gray-900 dark:text-white">
+           Work with me
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-md">
-            Reach out for collaborations or just to chat about design! ✨
+          <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-3xl">
+            Reach out for collaborations or just to chat about design✨
           </p>
 
           {/* Contact Icons */}
@@ -62,12 +62,15 @@ const Footer = () => {
             ))}
           </div>
 
-          {/* Copyright */}
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+       
+        </div>
+
+      </div>
+   {/* Copyright */}
+          <p className="text-sm text-center  border-t-1 py-6 border-gray-200 text-gray-500 dark:text-gray-400">
             © {currentYear} Hakheem. Crafted with passion.
           </p>
-        </div>
-      </div>
+
     </footer>
   );
 };
