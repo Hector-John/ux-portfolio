@@ -25,7 +25,7 @@ const projects: Project[] = [
     description:
       "Mobile-first e-commerce experience specializing in curated sneaker collections with seamless discovery",
     image: "/slider1.png",
-    caseStudyUrl: "/projects/step254",
+    caseStudyUrl: "/projects/step-254",
   },
 ];
 
